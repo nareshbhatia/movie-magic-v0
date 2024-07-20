@@ -51,6 +51,20 @@ Move the generated `MoviesPage` from `/components/movies-page.tsx` to
 
 Add prettier and format all files.
 
+### commit-4
+
+Miscellaneous cleanup:
+
+1. `global.css`: Replace theme with red (although prompt instructed to use red
+   theme)
+2. `layout.tsx`: Change font setup as I like it, replace default metadata with
+   app specific metadata
+3. `tailwind.config.ts`: Format + add font setup as I like it.
+
+This changed the app header to red – totally unexpected!
+
+![commit-4](assets/commit-4.png)
+
 ## Development Build
 
 ```shell
