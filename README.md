@@ -65,6 +65,15 @@ This changed the app header to red – totally unexpected!
 
 ![commit-4](assets/commit-4.png)
 
+### commit-5
+
+1. Removed light/dark mode toggle because it was adding the `dark` class to the
+   page's `<div>` instead of the `<html>` element of the document.
+2. Fixed mode to dark
+3. Removed primary color (red) from the header and filters.
+
+![commit-5](assets/commit-5.png)
+
 ## Development Build
 
 ```shell

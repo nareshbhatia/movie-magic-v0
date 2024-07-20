@@ -28,7 +28,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
-      className={`${inter.variable} ${robotoMono.variable}`}
+      className={`${inter.variable} ${robotoMono.variable} dark`}
       lang="en"
       suppressHydrationWarning
     >
