@@ -47,6 +47,10 @@ Move the generated `MoviesPage` from `/components/movies-page.tsx` to
 
 ![commit-1](assets/commit-1.png)
 
+### commit-3
+
+Add prettier and format all files.
+
 ## Development Build
 
 ```shell
