@@ -74,6 +74,15 @@ This changed the app header to red – totally unexpected!
 
 ![commit-5](assets/commit-5.png)
 
+### commit-6
+
+1. Added mock movie data
+2. Refine movie list styling
+3. Fixed issue with tailwind.config.ts where shadcn configuration was overriding
+   the default tailwind configuration instead of extending it.
+
+![commit-6](assets/commit-6.png)
+
 ## Development Build
 
 ```shell

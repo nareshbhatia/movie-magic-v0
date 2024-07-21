@@ -1,5 +1,6 @@
 'use client';
 
+import { movies } from './movies';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,13 +13,15 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
+import { Dot, Film, Plus, Search } from 'lucide-react';
+import { Fragment } from 'react';
 
 export default function MoviesPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <header className="h-14 flex items-center justify-between px-6">
         <div className="flex items-center gap-4">
-          <FilmIcon className="w-6 h-6" />
+          <Film className="w-6 h-6" />
           <h1 className="text-xl font-bold">Movie Magic</h1>
           <nav className="hidden md:flex items-center gap-4">
             <Link href="#" className="hover:text-accent" prefetch={false}>
@@ -48,7 +51,7 @@ export default function MoviesPage() {
       </header>
       <div className="flex items-center gap-4 py-4 px-6">
         <div className="relative flex-1">
-          <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/40" />
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-foreground/40" />
           <Input
             type="search"
             placeholder="Search movies..."
@@ -86,185 +89,40 @@ export default function MoviesPage() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="flex-1 overflow-auto grid gap-8">
-        <div className="flex items-center gap-4 bg-card p-4 rounded-lg h-16">
-          <img
-            src="/placeholder.svg"
-            alt="Movie Poster"
-            width={96}
-            height={144}
-            className="rounded-lg"
-          />
-          <div className="flex-1 grid gap-2">
-            <h2 className="text-xl font-bold">The Shawshank Redemption</h2>
-            <Button variant="ghost" size="icon" className="ml-auto">
-              <PlusIcon className="w-6 h-6" />
+      <div className="flex-1 overflow-auto grid px-4">
+        {movies.map((movie) => (
+          // these rows should have a fixed height of 56px
+          <div
+            className="flex items-center gap-x-4 bg-card py-2 rounded-md hover:bg-muted/50"
+            key={movie.id}
+          >
+            <div className="flex justify-center items-center text-muted-foreground w-10 h-10">
+              {movie.rank}
+            </div>
+            <img
+              src={movie.image.url}
+              alt={movie.name}
+              className="w-10 h-10 object-cover"
+            />
+            <div className="flex-1">
+              <p className="leading-5 text-accent-foreground">{movie.name}</p>
+              <div className="flex items-center gap-x-1 text-muted-foreground">
+                {movie.genres.map((genre, index) => (
+                  <Fragment key={index}>
+                    <p className="text-sm">{genre}</p>
+                    {index < movie.genres.length - 1 && (
+                      <Dot className="w-4 h-4" />
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+            <Button variant="ghost" size="icon">
+              <Plus className="w-4 h-4" />
             </Button>
           </div>
-        </div>
-        <div className="flex items-center gap-4 bg-card p-4 rounded-lg h-16">
-          <img
-            src="/placeholder.svg"
-            alt="Movie Poster"
-            width={96}
-            height={144}
-            className="rounded-lg"
-          />
-          <div className="flex-1 grid gap-2">
-            <h2 className="text-xl font-bold">The Godfather</h2>
-            <Button variant="ghost" size="icon" className="ml-auto">
-              <PlusIcon className="w-6 h-6" />
-            </Button>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 bg-card p-4 rounded-lg h-16">
-          <img
-            src="/placeholder.svg"
-            alt="Movie Poster"
-            width={96}
-            height={144}
-            className="rounded-lg"
-          />
-          <div className="flex-1 grid gap-2">
-            <h2 className="text-xl font-bold">The Dark Knight</h2>
-            <Button variant="ghost" size="icon" className="ml-auto">
-              <PlusIcon className="w-6 h-6" />
-            </Button>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
-  );
-}
-
-function FilmIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect width="18" height="18" x="3" y="3" rx="2" />
-      <path d="M7 3v18" />
-      <path d="M3 7.5h4" />
-      <path d="M3 12h18" />
-      <path d="M3 16.5h4" />
-      <path d="M17 3v18" />
-      <path d="M17 7.5h4" />
-      <path d="M17 16.5h4" />
-    </svg>
-  );
-}
-
-function MoonIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-    </svg>
-  );
-}
-
-function PlusIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="M12 5v14" />
-    </svg>
-  );
-}
-
-function SearchIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
-  );
-}
-
-function SunIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2" />
-      <path d="M12 20v2" />
-      <path d="m4.93 4.93 1.41 1.41" />
-      <path d="m17.66 17.66 1.41 1.41" />
-      <path d="M2 12h2" />
-      <path d="M20 12h2" />
-      <path d="m6.34 17.66-1.41 1.41" />
-      <path d="m19.07 4.93-1.41 1.41" />
-    </svg>
-  );
-}
-
-function XIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
   );
 }
