@@ -18,7 +18,7 @@ import { Fragment } from 'react';
 
 export default function MoviesPage() {
   return (
-    <div className="flex flex-col w-full min-h-screen">
+    <div className="flex flex-col w-full h-screen">
       <header className="h-14 flex items-center justify-between px-6">
         <div className="flex items-center gap-4">
           <Film className="w-6 h-6" />
@@ -89,7 +89,7 @@ export default function MoviesPage() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="flex-1 overflow-auto grid px-4">
+      <div className="flex-1 overflow-auto px-4">
         {movies.map((movie) => (
           // these rows should have a fixed height of 56px
           <div
